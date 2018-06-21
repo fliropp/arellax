@@ -1,0 +1,107 @@
+<html>
+<head>
+  <style>
+     body {
+       align-items: center;
+     }
+    .plax_top {
+      position:absolute;
+      z-index:3;
+      top:0px;
+      min-height: 1000px;
+      width: 90%;
+      background-color: green;
+    }
+    .plax_bottom {
+      position:absolute;
+      z-index:3;
+      top:2000px;
+      min-height: 1000px;
+      width: 90%;
+      background-color: yellow;
+    }
+    .plax{
+      position:fixed;
+      z-index:2;
+      top:0px;
+      min-height: 1000px;
+      background-image: url('mad.jpg');
+      background-size:cover;
+      min-width: 95%;
+      background-color: red;
+    }
+    .plax_overlay {
+      position: absolute;
+      z-index:1;
+      top:1000px;
+      min-height: 1000px;
+      width: 100%;
+      background-color: blue;
+    }
+
+    .plax .ontop {
+      position:fixed !important;
+    }
+
+    </style>
+</head>
+<body>
+  <div class='plax_top'>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+    <p>bla bla bla</p>
+  </div>
+  <div class='plax_overlay'>plaxOverlay</div>
+  <div class='plax'></div>
+  <div class='plax_bottom'>plxBottom</div>
+  <script type="application/javascript">
+
+      let options = {
+        root: null, // relative to document viewport
+        rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
+        threshold: 1.0 // visible amount of item shown in relation to root
+      };
+
+
+      const callback = (changes, observer)=> {
+        changes.forEach(change => {
+        if (change.intersectionRatio > 0) {
+            alert('INTSERSCTION!');
+            document.querySelector('.plax').setAttribute('class', 'plax ontop');
+            observer.unobserve(document.querySelector('.plax_overlay'));
+          }
+        });
+      }
+      var observer = new IntersectionObserver(callback, options);
+
+      observer.observe(document.querySelector('.plax_overlay'));
+
+  </script>
+</body>
+</html>
